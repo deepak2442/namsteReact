@@ -1,5 +1,6 @@
 import React from "react";
-import  ReactDOM  from "react-dom";
+import logo from "./public/react.jpg";
+import icon from "./public/user.jpg"
 
 // -----without JSX-----
 const h1 =React.createElement("h1",{},"im h1")
@@ -54,18 +55,5 @@ const DIvwithJSXandComponents = ()=>(
     </div>
 )
 
+export default <DIvwithJSXandComponents />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-root.render(<HeadingComponent/>)
