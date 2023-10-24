@@ -33,7 +33,7 @@ border: 1px solid black
 }
 
 .res-card{ 
-    
+    display: flexbox;
     padding: 5px ;
     width: 200px;
     height: 350px;
