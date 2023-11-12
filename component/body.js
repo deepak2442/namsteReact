@@ -1,4 +1,4 @@
-import RestaurentCard from "./reastaurant";
+import RestaurentCard, { withPromotedLabel } from "./reastaurant";
 import {resList} from "../utills/mock data";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -11,6 +11,8 @@ const Body = () =>{
     const [restaurantList,setlistofRestaurant]= useState ([]);
     const [searchText,setSearchtext]= useState ("");
     const [filteredRestaurants,setFilteredRestaurants]=useState([]);
+
+    const RestaurantCardPromoted = withPromotedLabel(RestaurentCard)
 
     const onlineStatus = useOnlinestatus()
  if (onlineStatus === false)
@@ -49,13 +51,13 @@ const Body = () =>{
   
         // call the checkJsonData() function which return Swiggy Restaurant data
         const resData = await checkJsonData(json);
-  
+  console.log(resData)
         // update the state variable restaurants with Swiggy API data
         setlistofRestaurant(resData);
         setFilteredRestaurants(resData);
       } 
       catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
 
@@ -86,9 +88,9 @@ const Body = () =>{
 
   (
         <div className="body">
-        <div className="filter-flex">
-
-        <div className="Search">
+        <div className="filter">
+<div className="flex">
+        <div className="Search m-4 p-4">
             <input
              type="text"
              className="border border-solid border-black"
@@ -97,11 +99,11 @@ const Body = () =>{
              setSearchtext(e.target.value);
             }}      
             />
-            <button className="btn" onClick={()=>{
+            <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={()=>{
                 // Filter the restaurant cards and update the UI
                 // searchText
 
-                console.log(searchText)
+                // console.log(searchText)
 
 
                 const filteredRestaurants= restaurantList.filter((res)=>
@@ -113,21 +115,30 @@ const Body = () =>{
         
         
         
-        <div className="bst-restaurant" 
+        <div className="w-32 h-9 bg-slate-500 rounded-lg  m-4 mt-12 text-center" 
         onClick={() =>{ 
             const filterlist=restaurantList.filter((rest)=> rest.info.avgRating >4)
             setlistofRestaurant(filterlist)}}
             >
             best Restaurant
             </div>
-        <div className="res-container">
+            </div>
+
+        <div className="flex flex-wrap m-5">
         {restaurantList.map((restaurant) =>
-         ( <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestaurentCard 
-          
-           resData={restaurant} /></Link>)
-        )}</div>
-            
-        </div>
+         ( <Link key={restaurant.info.id}
+          to={"/restaurant/"+restaurant.info.id}
+          >
+
+        {restaurant.info.promoted ? <RestaurantCardPromoted  resData={restaurant} /> :<RestaurentCard resData={restaurant} /> }
+         
+       
+          </Link>
+          )
+        )}
+        
+        </div>    
+      </div>
           
         
 </div>
