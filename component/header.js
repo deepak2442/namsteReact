@@ -1,10 +1,17 @@
 import { Logo_url } from "../utills/mock data";
 import { Link } from "react-router-dom";
 import useOnlinestatus from "../utills/useOnlinestatus";
+import { useSelector } from "react-redux";
 
 const Header = () =>{
 
-    const onlineStatus = useOnlinestatus()
+const onlineStatus = useOnlinestatus();
+
+const cartItems = useSelector((store) => store.cart.items);
+console.log(cartItems)
+
+
+
     return (
         <div className="flex justify-between bg-indigo-100 shadow-lg">
             <div className="logo-container">
@@ -17,7 +24,8 @@ const Header = () =>{
                     <li className="px-4"> <Link to="/about"> About us</Link>  </li>
                     <li className="px-4"><Link to="/contactus">Contact Us</Link></li>
                     <li className="px-4"><Link to="/Grocery">Grocery</Link></li>
-                    <li className="px-4">Cart</li>
+                    <li className="px-4 font-bold text-xl"><Link to="/cart">Cart- ({cartItems.length}items)</Link></li>
+                    
                 </ul>
             </div>
         </div>

@@ -19,7 +19,7 @@ const RestaurantCategory = ({data,showItems,setShowIndex}) =>{
             <span className="font-extrabold">{data.title} ({ data.itemCards.length})</span>
             <span>⬇️</span>
         </div>  
-              {/* Acoridion Body */}
+              {/* Acoridion Body */}  
               {showItems && <ItemList items= {data.itemCards} />}
         </div>
 

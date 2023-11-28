@@ -9,6 +9,9 @@ import Error from "./component/error";
 import { Outlet } from "react-router-dom";
 import ContactUs from "./component/contactUs";
 import RestaurantMenu from "./component/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./utills/appStore";
+import Cart from "./component/cart";
 // import Grocery from "./component/grocery.js"
 // chunks
 // lazy loading
@@ -23,10 +26,11 @@ const Grocery =  lazy(() => import("./component/grocery"))
 
 const App =() =>{
     return(
+        <Provider store={appStore}>
         <div>
         <Header />
         <Outlet />
-        </div>
+        </div></Provider>
     )
 }
    const root=ReactDOM.createRoot(document.getElementById("root"));
@@ -55,6 +59,10 @@ const App =() =>{
             {
                 path:"/Grocery",
                 element:<Suspense fallback= {<h1> Loading.....</h1>}> <Grocery /> </Suspense>
+            },
+            {
+                path:"/cart",
+                element:<Cart />
             }
         ] ,
         errorElement: <Error />  

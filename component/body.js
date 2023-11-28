@@ -51,15 +51,15 @@ const Body = () =>{
   
         // call the checkJsonData() function which return Swiggy Restaurant data
         const resData = await checkJsonData(json);
-  console.log(resData)
+ 
         // update the state variable restaurants with Swiggy API data
         setlistofRestaurant(resData);
         setFilteredRestaurants(resData);
       } 
       catch (error) {
-        // console.log(error);
+    
       }
-    }
+    }    
 
     // useEffect(() => {
     //     fetchData();
@@ -73,14 +73,7 @@ const Body = () =>{
     
     //     const json = await data.json();
 
-        
-    
-    //     // optional chain
 
-    // // setlistofRestauant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    // // setlistofRestauant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-         
-    //   };
 
     
 
