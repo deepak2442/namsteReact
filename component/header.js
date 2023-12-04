@@ -2,8 +2,11 @@ import { Logo_url } from "../utills/mock data";
 import { Link } from "react-router-dom";
 import useOnlinestatus from "../utills/useOnlinestatus";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const Header = () =>{
+
+    const [btnNameReact,setBtnReact] =useState("Login")
 
 const onlineStatus = useOnlinestatus();
 
@@ -25,6 +28,10 @@ console.log(cartItems)
                     <li className="px-4"><Link to="/contactus">Contact Us</Link></li>
                     <li className="px-4"><Link to="/Grocery">Grocery</Link></li>
                     <li className="px-4 font-bold text-xl"><Link to="/cart">Cart- ({cartItems.length}items)</Link></li>
+
+                    <button className="login" onClick={() =>{ btnNameReact ==="Login"? setBtnReact("Logout"):setBtnReact("Login")}}>
+                        {btnNameReact}
+                    </button>
                     
                 </ul>
             </div>
